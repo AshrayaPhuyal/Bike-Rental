@@ -220,6 +220,7 @@ export async function logout(req, res) {
     return res.status(500).json({
       success: false,
       message: "Failed to Log out",
+      error:error.message
     });
   }
 }

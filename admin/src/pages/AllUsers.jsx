@@ -231,7 +231,7 @@ function AllUsers() {
                     <td>{user.age}</td>
                     <td>
                       <div className="flex gap-2">
-                        <div className="tooltip" data-tip="edit">
+                        <div className="tooltip hidden" data-tip="edit">
                           <button
                             className="btn btn-info btn-sm"
                             onClick={() => handleEditUser(user)}

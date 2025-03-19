@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 
+
 function Navbar() {
   const navigate = useNavigate();
   const [token, setToken] = useState(localStorage.getItem("token") || null);
@@ -91,13 +92,13 @@ function Navbar() {
 
       {token ? (
         <>
-          <button onClick={handleLogout} className="btn btn-primary">
+          <button onClick={handleLogout} className="btn btn-primary hidden">
             Logout
           </button>
         </>
       ) : (
         <>
-          <Link to={"/login"} className="btn btn-primary">
+          <Link to={"/login"} className="btn btn-primary hidden">
             Login
           </Link>
         </>
