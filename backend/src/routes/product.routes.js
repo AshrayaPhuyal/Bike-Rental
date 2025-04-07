@@ -8,11 +8,12 @@ import {
 } from "../controllers/product.controller.js";
 import { adminAuth } from "../middlewares/adminAuth.middleware.js";
 import { upload } from "../middlewares/multer.middleware.js";
+import { auth } from "../middlewares/auth.middleware.js";
 
 export const productRouter = express.Router();
 
 productRouter.post(
-  "/add-product",
+  "/products",
   adminAuth,
   upload.fields([
     { name: "image1", maxCount: 1 },
@@ -24,11 +25,10 @@ productRouter.post(
   addProduct
 );
 
-productRouter.delete("/delete-product/:productId", adminAuth, deleteProduct);
-productRouter.get("/products", adminAuth, allProducts);
-productRouter.get("/get-product/:productId", adminAuth, singleProduct);
+productRouter.delete("/products/:productId", adminAuth, deleteProduct);
+productRouter.get("/products/:productId", adminAuth, singleProduct);
 productRouter.put(
-  "/update-product/:productId",
+  "/products/:productId",
   adminAuth,
   upload.fields([
     { name: "image1", maxCount: 1 },
@@ -39,3 +39,7 @@ productRouter.put(
   ]),
   updateProduct
 );
+productRouter.get("/products", adminAuth, allProducts);
+// user
+productRouter.get("/user/products", allProducts);
+productRouter.get("/user/products/:productId", auth, singleProduct);

@@ -86,7 +86,7 @@ function Footer() {
           <div className="flex items-start flex-col gap-6">
             <h1 className="text-xl font-bold font-mono">GET IN TOUCH</h1>
             <div className="flex flex-col gap-1 text-gray-400">
-              <Link
+            <Link
                 className="hover:text-white"
                 to="https://www.instagram.com/_ashraya_phuyal/"
                 target="_blank"

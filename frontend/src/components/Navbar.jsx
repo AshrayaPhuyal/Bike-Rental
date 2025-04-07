@@ -12,9 +12,9 @@ function Navbar() {
   const dispatch = useDispatch();
   const { token, user } = useSelector((state) => state.auth);
   const isKycVerified = user?.kycVerified || false;
-  // const favouriteCount = useSelector(
-  //   (state) => state.favourite.favouriteData.length
-  // );
+  const favouriteCount = useSelector(
+    (state) => state.favourite.favouriteData.length
+  );
 
   const mutation = useMutation({
     mutationKey: ["logout"],
@@ -155,7 +155,7 @@ function Navbar() {
             </Link>
             <Link to={"/favourites"} className="relative">
               <div className="absolute -top-2 -right-2 h-5 w-5 rounded-full bg-[#5753E8] flex items-center justify-center text-xs">
-                {/* {favouriteCount} */}0
+                {favouriteCount}
               </div>
               <Heart size={24} />
             </Link>

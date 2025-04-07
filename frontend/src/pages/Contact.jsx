@@ -34,7 +34,7 @@ function Contact() {
           <p className="text-base">
             📍 <strong>Location:</strong> Kathmandu, Nepal <br />
             📞 <strong>Phone:</strong> +977-9800000000 <br />
-            📧 <strong>Email:</strong> support@BikeSewa.com
+            📧 <strong>Email:</strong> support@reeleiic.com
           </p>
 
           {/* Careers Section */}

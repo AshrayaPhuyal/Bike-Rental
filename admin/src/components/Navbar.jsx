@@ -1,10 +1,10 @@
 import React, { useState } from "react";
+import { Menu, X } from "lucide-react";
 import logo from "../assets/logo.webp";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
-
 
 function Navbar() {
   const navigate = useNavigate();
@@ -71,6 +71,8 @@ function Navbar() {
             <Link to={"/"}>Dashboard</Link>
             <Link to={"/add-product"}>Add Product</Link>
             <Link to={"/product-display"}> All Products</Link>
+            <Link to={"/users"}>All Users</Link>
+            <Link to={"/kyc-request"}>Kyc-Request</Link>
           </ul>
         </div>
         <div className="navbar-start">
@@ -92,13 +94,13 @@ function Navbar() {
 
       {token ? (
         <>
-          <button onClick={handleLogout} className="btn btn-primary hidden">
+          <button onClick={handleLogout} className="btn btn-primary">
             Logout
           </button>
         </>
       ) : (
         <>
-          <Link to={"/login"} className="btn btn-primary hidden">
+          <Link to={"/login"} className="btn btn-primary">
             Login
           </Link>
         </>

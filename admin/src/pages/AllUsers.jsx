@@ -8,17 +8,25 @@ import { useForm } from "react-hook-form";
 
 function AllUsers() {
   const [selectedUser, setSelectedUser] = useState(null);
-  const [selectedIds, setSelectedIds] = useState([]);
   const [deletingUserId, setDeletingUserId] = useState(null);
   const [avatar, setAvatar] = useState(null);
   const [editModalOpen, setEditModalOpen] = useState(false);
 
-  const { register, handleSubmit, reset } = useForm({
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+    clearErrors,
+    setError,
+    setValue,
+  } = useForm({
     defaultValues: {
       firstName: "",
       lastName: "",
       age: "",
       gender: "",
+      image: null,
     },
   });
 
@@ -59,7 +67,7 @@ function AllUsers() {
     }
 
     const response = await axios.delete(
-      `${import.meta.env.VITE_BACKEND_BASE_URL}/admin/delete-user/${id}`,
+      `${import.meta.env.VITE_BACKEND_BASE_URL}/admin/users/${id}`,
       { headers: { token } }
     );
 
@@ -141,15 +149,6 @@ function AllUsers() {
     reset();
   };
 
-  function handleSelectedUser(id) {
-    if (selectedIds.includes(id)) {
-      const updatedIds = selectedIds.filter((itemId) => id !== itemId);
-      setSelectedIds(updatedIds);
-    } else {
-      setSelectedIds([...selectedIds, id]);
-    }
-  }
-
   if (isPending) {
     return <span>Loading...</span>;
   }
@@ -157,6 +156,19 @@ function AllUsers() {
   if (isError) {
     return <span>Error: {error.message}</span>;
   }
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+
+    if (!file) {
+      setError("avatar", { type: "manual", message: "Avatar is required" });
+    } else {
+      console.log(file);
+      setAvatar(file);
+      setValue("avatar", file, { shouldValidate: true });
+      clearErrors("avatar");
+    }
+  };
 
   function onSubmit(data) {
     const id = data._id;
@@ -184,7 +196,6 @@ function AllUsers() {
         <table className="table min-w-[800px]">
           <thead>
             <tr>
-              <th></th>
               <th>Name</th>
               <th>Kyc?</th>
               <th>Gender</th>
@@ -196,15 +207,6 @@ function AllUsers() {
             {data?.users && data.users.length > 0
               ? data.users.map((user) => (
                   <tr key={user._id}>
-                    <th>
-                      <label>
-                        <input
-                          onChange={() => handleSelectedUser(user._id)}
-                          type="checkbox"
-                          className="checkbox"
-                        />
-                      </label>
-                    </th>
                     <td>
                       <div className="flex items-center gap-3">
                         <div className="avatar">
@@ -231,7 +233,7 @@ function AllUsers() {
                     <td>{user.age}</td>
                     <td>
                       <div className="flex gap-2">
-                        <div className="tooltip hidden" data-tip="edit">
+                        <div className="tooltip" data-tip="edit">
                           <button
                             className="btn btn-info btn-sm"
                             onClick={() => handleEditUser(user)}
@@ -259,7 +261,7 @@ function AllUsers() {
                                       height={80}
                                       width={80}
                                       src={
-                                        avatar && avatar !== null
+                                        avatar
                                           ? URL.createObjectURL(avatar)
                                           : uploadImg
                                       }
@@ -267,14 +269,16 @@ function AllUsers() {
                                     />
                                     <input
                                       type="file"
-                                      onChange={(e) => {
-                                        const file = e.target.files?.[0];
-                                        setAvatar(file || null);
-                                      }}
+                                      onChange={handleImageChange}
                                       className="file-input file-input-bordered hidden w-full"
                                       accept="image/*"
                                     />
                                   </label>
+                                  {errors.avatar && (
+                                    <p className="text-xs text-red-500">
+                                      {errors.avatar.message}
+                                    </p>
+                                  )}
                                 </div>
 
                                 <div className="form-control mb-2">
@@ -455,9 +459,8 @@ function AllUsers() {
                         <div className="tooltip" data-tip="delete">
                           <button
                             disabled={
-                              (deleteMutation.isPending &&
-                                deleteUser === user._id) ||
-                              selectedIds.length > 1
+                              deleteMutation.isPending &&
+                              deleteUser === user._id
                             }
                             onClick={() => handleDeleteUser(user._id)}
                             className="btn px-2  btn-error btn-sm"
