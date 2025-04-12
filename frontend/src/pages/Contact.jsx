@@ -34,7 +34,7 @@ function Contact() {
           <p className="text-base">
             📍 <strong>Location:</strong> Kathmandu, Nepal <br />
             📞 <strong>Phone:</strong> +977-9800000000 <br />
-            📧 <strong>Email:</strong> support@reeleiic.com
+            📧 <strong>Email:</strong> support@BikeSewa.com
           </p>
 
           {/* Careers Section */}
@@ -43,7 +43,7 @@ function Contact() {
               Join Our Team
             </h1>
             <p>
-              We are always looking for passionate individuals to join Reeleiic.
+              We are always looking for passionate individuals to join Bike Sewa.
             </p>
             <button className=" text-white bg-[#605DFF] px-6 py-3 max-w-[300px] w-[60%] rounded-lg hover:hover:bg-[#635ee8] transition-all">
               Explore Jobs
