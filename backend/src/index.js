@@ -6,6 +6,7 @@ import { rootRouter } from "./routes/index.js";
 import cookieParser from "cookie-parser";
 
 const app = express();
+const port = process.env.PORT || 8000;
 
 app.use(
   express.json({
@@ -24,17 +25,21 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "http://localhost:5174"],
-    credentials: true,
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
+
+app.get("/", (req, res) => {
+  res.json({ message: "Reeliic API is running" });
+});
 
 app.use("/api/v1", rootRouter);
 
 connectDb()
   .then(() => {
-    app.listen(process.env.PORT || 8000, () => {
-      console.log(`app is running on port ${process.env.PORT || 8000}`);
+    app.listen(port, () => {
+      console.log(`app is running on port ${port}`);
     });
   })
   .catch((error) => {
