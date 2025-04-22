@@ -2,7 +2,7 @@ import 'dotenv/config';
 import { orderModel } from "../models/order.models.js";
 import Stripe from "stripe";
 
-const stripe = new Stripe(process.env.STRIPE_API_KEY);
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 const currency = "usd";
 const deliveryCharge = 15;
