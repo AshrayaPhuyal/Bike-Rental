@@ -31,7 +31,7 @@ app.use(
 );
 
 app.get("/", (req, res) => {
-  res.json({ message: "Reeliic API is running" });
+  res.json({ message: "Bike Sewa API is running" });
 });
 
 app.use("/api/v1", rootRouter);
