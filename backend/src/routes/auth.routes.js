@@ -6,6 +6,7 @@ import {
   resetPassword,
   signin,
   signup,
+  verifyEmail,
 } from "../controllers/auth.controller.js";
 import { upload } from "../middlewares/multer.middleware.js";
 import { auth } from "../middlewares/auth.middleware.js";
@@ -17,6 +18,9 @@ authRouter.post(
   upload.fields([{ name: "avatar", maxCount: 1 }]),
   signup
 );
+
+authRouter.post("/verify-email", verifyEmail);
+
 authRouter.post("/signin", signin);
 authRouter.post("/forgot-password", forgotPassword);
 authRouter.post("/reset-password/:resetToken", resetPassword);

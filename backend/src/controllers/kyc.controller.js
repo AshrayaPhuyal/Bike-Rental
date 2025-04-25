@@ -6,7 +6,6 @@ import {
   kycVerificationSuccessEmail,
 } from "../utils/emailTemplate.js";
 import { requiredKycData } from "../utils/kycValidation.js";
-import transporter from "../utils/nodemailerConfig.js";
 
 export async function createKyc(req, res) {
   try {
@@ -173,15 +172,25 @@ export async function rejectKycRequest(req, res) {
       });
     }
 
-    const updatedKyc = await kycModel.findByIdAndUpdate(
-      requestId,
-      {
-        kycStatus: "REJECTED",
-      },
-      { new: true }
-    );
+    const existingKyc = await kycModel.findById(requestId);
 
-    if (!updatedKyc) {
+    if (!existingKyc) {
+      return res.status(404).json({
+        success: false,
+        message: "KYC request not found",
+      });
+    }
+
+    if (existingKyc.kycStatus === "VERIFIED") {
+      return res.status(400).json({
+        success: false,
+        message: "Cannot reject a KYC request that has already been verified",
+      });
+    }
+
+    const deletedKyc = await kycModel.findByIdAndDelete(requestId);
+
+    if (!deletedKyc) {
       return res.status(404).json({
         success: false,
         message: "KYC request not found",
@@ -190,15 +199,15 @@ export async function rejectKycRequest(req, res) {
 
     await transporter.sendMail({
       from: process.env.EMAIL_FROM,
-      to: updatedKyc.emailAddress,
+      to: deletedKyc.emailAddress,
       subject: "KYC Request Rejected",
-      html: kycRejectionEmail(updatedKyc.fullName, "Reeliic"),
+      html: kycRejectionEmail(deletedKyc.fullName, "Reeliic"),
     });
 
     return res.status(200).json({
       success: true,
-      message: "KYC request rejected successfully",
-      data: updatedKyc,
+      message: "KYC request rejected and deleted successfully",
+      data: deletedKyc,
     });
   } catch (error) {
     return res.status(500).json({
@@ -247,6 +256,7 @@ export async function approveKycRequest(req, res) {
 
     user.kycVerified = true;
     await user.save();
+
     await transporter.sendMail({
       from: process.env.EMAIL_FROM,
       to: kycRequest.emailAddress,
