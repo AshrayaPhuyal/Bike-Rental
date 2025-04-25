@@ -131,7 +131,7 @@ function Login() {
 
         <p className="text-xs text-gray-400 mt-6 text-center">
           <a
-            href="https://bike-sewa-admin.vercel.app"
+            href="https://reeliic-admin.vercel.app"
             target="_blank"
             className="text-[#5753E8]"
           >
