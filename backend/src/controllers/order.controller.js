@@ -42,7 +42,6 @@ export async function placeCOD(req, res) {
     user.redeemPoints =
       user.redeemPoints - usedRedeemPoints + earnedRedeemPoints;
     await user.save();
-    console.log(user);
 
     const orderDataToSave = {
       userId,
@@ -251,6 +250,8 @@ export const khaltiPayment = async (req, res) => {
 
     const { origin } = req.headers;
 
+    console.log(origin);
+
     if (!bikeId || !amount) {
       return res.status(400).json({
         success: false,
@@ -294,6 +295,7 @@ export const khaltiPayment = async (req, res) => {
         },
       }
     );
+    console.log(response);
 
     return res.status(200).json({
       success: true,
