@@ -136,7 +136,7 @@ function HeroSection() {
         </motion.div>
 
         <motion.img
-          src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.ktm.com%2Fen-no%2F1290-super-duke-rr.html&psig=AOvVaw1_Vzlemo_oy8h_K-A1FZPr&ust=1745913392861000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCJCzybOg-owDFQAAAAAdAAAAABAE"
+          src="https://s7g10.scene7.com/is/image/ktm/378263_pure-performance-2?$ogimage$"
           alt="Bike"
           className="absolute right-10 bottom-10 w-1/4 max-w-xs hidden lg:block rounded-lg shadow-2xl border-2 border-gray-800/50"
           initial={{ opacity: 0, x: 100 }}
