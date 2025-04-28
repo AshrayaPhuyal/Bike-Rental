@@ -17,7 +17,6 @@ function Contact() {
     formState: { errors },
   } = useForm();
   const { token } = useSelector((state) => state.auth);
-  console.log(token);
 
   const contactMutation = useMutation({
     mutationFn: async (formData) => {
@@ -118,7 +117,7 @@ function Contact() {
                   <span className="text-[#605DFF]">📧</span>
                   <div>
                     <strong className="text-white">Email:</strong>
-                    <p>support@BikeSewa.com</p>
+                    <p>support@bikesewa.com</p>
                   </div>
                 </li>
               </ul>
