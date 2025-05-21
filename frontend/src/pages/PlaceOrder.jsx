@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import NewsLetter from "../components/NewsLetter";
 import stripe_logo from "../assets/stripe_logo.png";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
@@ -797,7 +796,7 @@ function PlaceOrder() {
           </div>
         </div>
       </form>
-      <NewsLetter />
+
     </>
   );
 }

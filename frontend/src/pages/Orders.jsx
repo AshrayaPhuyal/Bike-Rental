@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { motion } from "framer-motion";
-import NewsLetter from "../components/NewsLetter";
 
 function Orders() {
   const { token } = useSelector((state) => state.auth);
@@ -58,7 +57,7 @@ function Orders() {
     loadOrderdata();
   }, [token]);
 
-  const getStatusColor = (status) => {
+  function getStatusColor(status) {
     switch (status.toLowerCase()) {
       case "delivered":
         return "bg-green-500";
@@ -71,7 +70,7 @@ function Orders() {
       default:
         return "bg-gray-500";
     }
-  };
+  }
 
   if (isLoading) {
     return (
@@ -223,7 +222,7 @@ function Orders() {
           </motion.div>
         )}
       </div>
-      <NewsLetter />
+  
     </div>
   );
 }

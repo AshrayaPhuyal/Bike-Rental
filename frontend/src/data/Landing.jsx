@@ -93,24 +93,24 @@ export const howItWorksData = [
 // Testimonials Data
 export const testimonialsData = [
   {
-    name: "Sarah Johnson",
+    name: "Amy Dhakal",
     role: "Bike Enthusiast",
     image: "https://randomuser.me/api/portraits/women/75.jpg",
     quote:
-      "Reeliic made it so easy to rent a bike while traveling. The entire process was smooth, and the bike was in top-notch condition!",
+      "Bike Sewa made it so easy to rent a bike while traveling. The entire process was smooth, and the bike was in top-notch condition!",
   },
   {
-    name: "Michael Chen",
+    name: "Nitya Raj Dhakal",
     role: "Weekend Rider",
     image: "https://randomuser.me/api/portraits/men/75.jpg",
     quote:
-      "I’ve used Reeliic to both rent and buy bikes — it's incredibly convenient and user-friendly. I love how transparent the pricing is.",
+      "I’ve used Bike sewa  to both rent and buy bikes — it's incredibly convenient and user-friendly. I love how transparent the pricing is.",
   },
   {
-    name: "Emily Rodriguez",
+    name: "Shanta Phuyal",
     role: "Delivery Partner",
     image: "https://randomuser.me/api/portraits/women/74.jpg",
     quote:
-      "Reeliic helped me get a reliable bike for my delivery work. Their support team is amazing and the rental plans are flexible and affordable.",
+      "Bike Sewa helped me get a reliable bike for my delivery work. Their support team is amazing and the rental plans are flexible and affordable.",
   },
 ];

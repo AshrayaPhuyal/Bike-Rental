@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import NewsLetter from "../components/NewsLetter";
 import OurMission from "../components/OurMission";
 import WhyUsContainer from "../components/WhyUsContainer";
 import BestsellerProducts from "../components/BestSellerProducts";
@@ -14,7 +13,7 @@ function About() {
       <OurMission />
       <WhyUsContainer />
       <BestsellerProducts />
-      <NewsLetter />
+    
     </div>
   );
 }

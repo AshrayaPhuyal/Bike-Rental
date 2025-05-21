@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import Title from "../components/Title";
-import NewsLetter from "../components/NewsLetter";
 import contactImg from "../assets/contact_img.png";
 import { toast } from "react-hot-toast";
 import { useSelector } from "react-redux";
@@ -123,7 +122,7 @@ function Contact() {
               </ul>
             </div>
 
-            <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-8">
+            <div className="hidden bg-gray-900/50 border border-gray-800 rounded-xl p-8">
               <h3 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#605DFF] to-[#908EFF] mb-6">
                 Join Our Team
               </h3>
@@ -237,7 +236,7 @@ function Contact() {
         </motion.div>
       </section>
 
-      <NewsLetter />
+     
     </div>
   );
 }

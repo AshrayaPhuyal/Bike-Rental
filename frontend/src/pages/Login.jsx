@@ -129,7 +129,7 @@ function Login() {
           </Link>
         </p>
 
-        <p className="text-xs text-gray-400 mt-6 text-center">
+        <p className="text-xs text-gray-400 mt-6 text-center hidden">
           <a
             href="https://bike-sewa-admin.vercel.app"
             target="_blank"

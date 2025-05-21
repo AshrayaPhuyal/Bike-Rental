@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import NewsLetter from "../components/NewsLetter";
 import { useEffect } from "react";
 
 function EditReview() {
@@ -135,7 +134,6 @@ function EditReview() {
           </div>
         </form>
       </div>
-      <NewsLetter />
     </div>
   );
 }
